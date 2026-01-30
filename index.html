@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Trip Gunung</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0D1B2A;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      text-align: center;
+      color: #C62828;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #C62828;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Form Open Trip Gunung</h2>
+
+  <input id="nama" placeholder="Nama Lengkap">
+  <input id="alamat" placeholder="Alamat">
+  <input id="no_wa" placeholder="No WhatsApp">
+  <input id="email" placeholder="Email">
+
+  <select id="gunung">
+    <option value="">Pilih Gunung</option>
+    <option>Gunung Prau</option>
+    <option>Gunung Gede</option>
+    <option>Gunung Merbabu</option>
+    <option>Gunung Rinjani</option>
+    <option>Gunung Dempo</option>
+    <option>Gunung Kerinci</option>
+    <option>Gunung Sindoro</option>
+    <option>Gunung Sumbing</option>
+    <option>Gunung Slamet</option>
+    <option>Gunung Semeru</option>
+    <option>Gunung Tanggamus</option>
+    <option>Gunung Seminung</option>
+    <option>Gunung Pesagi</option>
+  </select>
+
+  <input id="kode_pendaki" placeholder="Kode Pendaki">
+
+  <select id="jenis_trip">
+    <option>OPEN TRIP</option>
+    <option>PRIVATE TRIP</option>
+    <option>SHARECOST</option>
+  </select>
+
+  <select id="paket_trip">
+    <option>PAKET A</option>
+    <option>PAKET B</option>
+    <option>REGULER</option>
+  </select>
+
+  <input type="date" id="tanggal">
+
+  <button onclick="kirim()">DAFTAR SEKARANG</button>
+
+  <p id="status" style="color:green;text-align:center;display:none">
+    ✅ Pendaftaran berhasil
+  </p>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyK3uqSX1XqS8RfUCoQDT0MjaXSYm5d2kJkQUPvSWPUGtJWftBFHQu51mWPHq9QgZJL/exec";
+
+function kirim() {
+  fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      nama: nama.value,
+      alamat: alamat.value,
+      no_wa: no_wa.value,
+      email: email.value,
+      gunung: gunung.value,
+      kode_pendaki: kode_pendaki.value,
+      jenis_trip: jenis_trip.value,
+      paket_trip: paket_trip.value,
+      tanggal_keberangkatan: tanggal.value
+    })
+  }).then(() => {
+    document.getElementById("status").style.display = "block";
+  });
+}
+</script>
+
+</body>
+</html>
